@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Happy Birthday, Vhickthor & Treasure 🎂</title>
+<meta name="description" content="A tiny corner of the internet for two of my favourite people.">
+<meta name="theme-color" content="#07080b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============ BASE & RESET ============ */
+*, *::before, *::after { box-sizing: border-box; }
+:root {
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  --serif: 'Fraunces', Georgia, serif;
+  --v1: #4fe6b4; 
+  --t1: #e8c46a;
+  --bg: #07080b;
+  --text-main: #eef1f5;
+  --text-muted: #98a5b8;
+  --border-light: rgba(255,255,255,0.08);
+}
+html { 
+  scroll-behavior: smooth; 
+  -webkit-text-size-adjust: 100%; 
+}
+body {
+  margin: 0; 
+  background: var(--bg); 
+  color: var(--text-main);
+  font-family: var(--sans); 
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
+img, video { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+.wrap { 
+  width: 100%; 
+  max-width: 1080px; 
+  margin-inline: auto; 
+  padding-inline: clamp(16px, 4vw, 32px);
+  position: relative; 
+  z-index: 2; 
+}
+
+/* ============ BOOT SCREEN ============ */
+#boot {
+  position: fixed; inset: 0; z-index: 9999; background: #05060a; cursor: pointer;
+  display: grid; place-items: center; padding: 24px;
+  font-family: var(--mono); font-size: clamp(0.65rem, 2vw, 0.9rem); color: #93a4b8;
+  transition: opacity 0.55s ease;
+}
+#boot.out { opacity: 0; pointer-events: none; }
+.boot-inner { display: grid; gap: 0.85rem; width: min(430px, 90vw); }
+.boot-line { opacity: 0; transform: translateY(6px); animation: bootIn 0.35s ease forwards; }
+.boot-line:nth-child(1) { animation-delay: 0.15s; }
+.boot-line:nth-child(2) { animation-delay: 0.6s; }
+.boot-line:nth-child(3) { animation-delay: 1.05s; }
+.boot-line:nth-child(4) { animation-delay: 1.5s; }
+.boot-line .ok { color: var(--v1); }
+.boot-line .warn { color: var(--t1); }
+@keyframes bootIn { to { opacity: 1; transform: none; } }
+.boot-bar { height: 3px; background: #171e29; border-radius: 99px; overflow: hidden; margin-top: 0.4rem; }
+.boot-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--v1), var(--t1)); animation: load 2.1s 0.25s ease forwards; }
+@keyframes load { to { width: 100%; } }
+
+/* ============ HERO (FIRST CONCEPT + FLOATING PHOTOS) ============ */
+.hero {
+  min-height: 100svh; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+  text-align: center; 
+  padding: clamp(40px, 8vh, 80px) 0 clamp(30px, 6vh, 60px); 
+  position: relative; 
+  overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(50% 50% at 20% 10%, rgba(79,230,180,0.12) 0%, transparent 70%),
+              radial-gradient(50% 50% at 85% 20%, rgba(232,196,106,0.12) 0%, transparent 70%);
+}
+.kicker { font-family: var(--mono); font-size: clamp(0.55rem, 1.5vw, 0.75rem); letter-spacing: 0.25em; text-transform: uppercase; color: #7d8aa0; margin: 0 0 0.8rem; }
+.hero-title { font-family: var(--serif); font-size: clamp(2.2rem, 7.5vw, 5.5rem); line-height: 1.05; margin: 0; font-weight: 900; letter-spacing: -0.02em; }
+.hero-title em { font-style: italic; background: linear-gradient(90deg, var(--v1), var(--t1)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-sub { color: var(--text-muted); max-width: 44ch; margin: 1rem auto 0; line-height: 1.6; font-weight: 300; font-size: clamp(0.85rem, 2vw, 1.05rem); padding-inline: 16px; }
+
+/* Doors Grid - 2 Columns ALWAYS */
+.doors { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; /* Forces side-by-side on all screens */
+  gap: clamp(10px, 3vw, 24px); 
+  width: 100%; 
+  max-width: 900px; 
+  margin: clamp(2.5rem, 6vw, 4rem) 0 1.5rem; 
+  align-items: stretch;
+  padding-inline: clamp(12px, 3vw, 20px);
+}
+
+/* The Card */
+.door {
+  position: relative; 
+  border-radius: 20px; 
+  border: 1px solid var(--border-light);
+  background: #0c1017; 
+  overflow: visible; /* Allows the picture to float outside */
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(50px, 10vw, 75px) clamp(10px, 3vw, 24px) clamp(20px, 4vw, 30px);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.3, 1), border-color 0.3s, box-shadow 0.4s;
+  height: 100%;
+  z-index: 1;
+}
+.door:hover { transform: translateY(-5px); z-index: 2; }
+.door-v:hover { border-color: rgba(79,230,180,0.4); box-shadow: 0 20px 50px -20px rgba(79,230,180,0.3); }
+.door-t:hover { border-color: rgba(232,196,106,0.4); box-shadow: 0 20px 50px -20px rgba(232,196,106,0.3); }
+
+/* Floating Image */
+.door-pic {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-3deg);
+  width: clamp(65px, 16vw, 110px);
+  height: clamp(65px, 16vw, 110px);
+  border-radius: 18px;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #0c1017; /* Matches card background to cut out */
+  outline: 2px solid var(--border-light);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.6);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
+  z-index: 3;
+}
+.door-v .door-pic { outline-color: rgba(79,230,180,0.5); }
+.door-t .door-pic { outline-color: rgba(232,196,106,0.5); }
+.door-t .door-pic { transform: translate(-50%, -50%) rotate(3deg); }
+
+.door:hover .door-pic { transform: translate(-50%, -55%) rotate(0deg) scale(1.05); }
+
+/* Card Content */
+.door-ico { font-size: clamp(1.2rem, 3vw, 2rem); display: block; margin-bottom: 0.5rem; }
+.door-name { font-family: var(--serif); font-size: clamp(1.2rem, 4vw, 2.2rem); font-weight: 900; margin: 0; line-height: 1.1; letter-spacing: -0.01em; }
+.door-meta { font-family: var(--mono); font-size: clamp(0.5rem, 1.8vw, 0.7rem); letter-spacing: 0.1em; text-transform: uppercase; color: #7d8aa0; margin: 0.5rem 0 0; line-height: 1.4; }
+.door-cta { font-family: var(--mono); font-size: clamp(0.5rem, 1.5vw, 0.65rem); letter-spacing: 0.1em; text-transform: uppercase; margin-top: auto; padding-top: 1rem; opacity: 0.6; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
+.door:hover .door-cta { opacity: 1; }
+.door-v .door-cta { color: var(--v1); }
+.door-t .door-cta { color: var(--t1); }
+
+.hero-hint { font-family: var(--mono); font-size: clamp(0.55rem, 1.5vw, 0.7rem); letter-spacing: 0.2em; text-transform: uppercase; color: #5d6a7d; }
+
+/* ============ SECTIONS ============ */
+.sect { position: relative; padding: clamp(60px, 12vw, 120px) 0; border-top: 1px solid var(--border-light); overflow: hidden; }
+.sect-v { background: radial-gradient(100% 80% at 15% 0%, #0b2b25 0%, var(--bg) 60%); }
+.sect-t { background: radial-gradient(100% 80% at 85% 0%, #251a0b 0%, var(--bg) 60%); }
+.sect-v::before { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(79,230,180,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(79,230,180,0.05) 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(circle at 50% 25%, #000 0%, transparent 70%); -webkit-mask-image: radial-gradient(circle at 50% 25%, #000 0%, transparent 70%); }
+.sect-t::before { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: repeating-linear-gradient(0deg, rgba(232,196,106,0.06) 0 1px, transparent 1px 36px); mask-image: linear-gradient(180deg, #000, transparent 85%); -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%); }
+
+.sect-top { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(1.5rem, 3vw, 2rem); }
+.tag { font-family: var(--mono); font-size: clamp(0.55rem, 1.2vw, 0.7rem); letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 12px; border-radius: 99px; border: 1px solid currentColor; opacity: 0.8; }
+.sect-v .tag { color: var(--v1); } .sect-t .tag { color: var(--t1); }
+.sect-name { font-family: var(--serif); font-size: clamp(3rem, 10vw, 7rem); line-height: 0.95; margin: 0; font-weight: 900; letter-spacing: -0.03em; }
+.sect-v .sect-name { color: #eafff8; } .sect-t .sect-name { color: #fff6e2; }
+.sect-role { font-family: var(--mono); font-size: clamp(0.65rem, 1.5vw, 0.8rem); letter-spacing: 0.15em; text-transform: uppercase; color: #8b98ab; margin: clamp(0.8rem, 2vw, 1.2rem) 0 0; }
+
+/* ECG */
+.ecg { width: 100%; height: clamp(40px, 8vw, 64px); margin: clamp(1.5rem, 4vw, 2.5rem) 0 0.5rem; overflow: visible; }
+.ecg polyline { fill: none; stroke: var(--v1); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(79,230,180,0.6)); stroke-dasharray: 120 2000; animation: ecg 3.4s linear infinite; }
+@keyframes ecg { from { stroke-dashoffset: 2120; } to { stroke-dashoffset: 0; } }
+
+/* Cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: clamp(1.5rem, 3vw, 2rem); }
+.card { background: rgba(11, 15, 21, 0.85); border: 1px solid var(--border-light); border-radius: 18px; padding: clamp(20px, 4vw, 32px); backdrop-filter: blur(8px); }
+.card-h { font-family: var(--mono); font-size: clamp(0.65rem, 1.5vw, 0.75rem); letter-spacing: 0.2em; text-transform: uppercase; margin: 0 0 1rem; color: #7d8aa0; }
+.lead { margin: 0 0 1rem; line-height: 1.8; font-weight: 300; font-size: clamp(0.95rem, 1.8vw, 1.1rem); color: #dfe6ef; }
+.lead:last-child { margin-bottom: 0; }
+.lead strong { font-weight: 700; color: #fff; }
+.sect-v .lead .hl { color: var(--v1); font-weight: 600; }
+.sect-t .lead .hl { color: var(--t1); font-weight: 600; }
+
+/* Vitals */
+.vital { margin-bottom: clamp(0.8rem, 2vw, 1.2rem); }
+.vital:last-child { margin-bottom: 0; }
+.vital-top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: clamp(0.6rem, 1.5vw, 0.7rem); letter-spacing: 0.1em; text-transform: uppercase; color: #9aa8bb; margin-bottom: 6px; }
+.vital-top b { color: var(--v1); }
+.bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, var(--v1), #8ef7d4); transition: width 1.5s cubic-bezier(0.2, 0.8, 0.3, 1); }
+.reveal.in .bar i { width: var(--w); }
+
+/* Prescription */
+.rx { border-color: rgba(79,230,180,0.2); background: linear-gradient(180deg, rgba(13,42,36,0.85), rgba(11,15,21,0.85)); }
+.rx-mark { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900; color: var(--v1); line-height: 1; margin: 0 0 0.5rem; }
+.rx-list { margin: 0; padding: 0; list-style: none; display: grid; gap: clamp(0.6rem, 2vw, 0.85rem); }
+.rx-list li { display: flex; gap: 0.75rem; line-height: 1.6; font-weight: 300; color: #dfe6ef; font-size: clamp(0.9rem, 1.8vw, 1rem); }
+.rx-list li::before { content: '▸'; color: var(--v1); flex: none; }
+
+/* Charges */
+.charges { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+.charges li { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; padding-bottom: 1rem; border-bottom: 1px dashed rgba(255,255,255,0.1); font-size: clamp(0.9rem, 1.8vw, 1rem); font-weight: 300; color: #dfe6ef; line-height: 1.5; }
+.charges li:last-child { border-bottom: 0; padding-bottom: 0; }
+.charges .no { font-family: var(--mono); font-size: clamp(0.6rem, 1.5vw, 0.7rem); letter-spacing: 0.1em; color: #8b98ab; flex-shrink: 0; }
+.charges .desc { flex: 1 1 200px; }
+.charges .verdict { font-family: var(--mono); font-size: clamp(0.55rem, 1.2vw, 0.65rem); letter-spacing: 0.1em; color: var(--t1); border: 1px solid rgba(232,196,106,0.4); border-radius: 99px; padding: 4px 10px; flex-shrink: 0; margin-left: auto; }
+
+/* Strips & Gallery */
+.strip { font-family: var(--mono); font-size: clamp(0.6rem, 1.5vw, 0.75rem); letter-spacing: 0.2em; text-transform: uppercase; color: #7d8aa0; margin: clamp(2.5rem, 6vw, 4rem) 0 clamp(1rem, 2vw, 1.5rem); display: flex; align-items: center; gap: 12px; }
+.strip::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,255,255,0.15), transparent); }
+
+.gal { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); grid-auto-rows: clamp(120px, 20vw, 180px); gap: clamp(8px, 1.5vw, 12px); }
+.gal .ph:first-child { grid-column: span 2; grid-row: span 2; }
+@media(max-width: 600px) {
+  .gal { grid-template-columns: repeat(2, 1fr); }
+  .gal .ph:first-child { grid-column: span 2; grid-row: span 1; }
+}
+.ph { position: relative; margin: 0; overflow: hidden; border-radius: 14px; border: 1px solid var(--border-light); background: linear-gradient(135deg, #12241f, #0b0f15); }
+.sect-t .ph { background: linear-gradient(135deg, #241b0e, #0b0f15); }
+.ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.3, 1); }
+.ph:hover img { transform: scale(1.05); }
+.ph figcaption { position: absolute; left: 10px; bottom: 10px; z-index: 2; font-family: var(--mono); font-size: clamp(0.5rem, 1.2vw, 0.6rem); letter-spacing: 0.1em; text-transform: uppercase; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.15); border-radius: 99px; padding: 4px 10px; color: #dbe4ef; backdrop-filter: blur(4px); }
+
+/* Videos */
+.vid-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; justify-items: center; }
+.vid-card { width: 100%; max-width: 400px; }
+.video-wrap { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-light); background: #05070a; aspect-ratio: 9/16; }
+.video-wrap video { width: 100%; height: 100%; object-fit: contain; display: block; }
+.video-badge { position: absolute; top: 12px; left: 12px; z-index: 2; font-family: var(--mono); font-size: clamp(0.5rem, 1.2vw, 0.6rem); letter-spacing: 0.15em; text-transform: uppercase; background: rgba(0,0,0,0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 99px; padding: 5px 10px; color: #eaf0f7; backdrop-filter: blur(4px); }
+.sect-v .video-badge { border-color: rgba(79,230,180,0.4); color: #b8f7e0; }
+.sect-t .video-badge { border-color: rgba(232,196,106,0.4); color: #f3d68e; }
+.video-note { font-family: var(--mono); font-size: clamp(0.55rem, 1.5vw, 0.65rem); letter-spacing: 0.1em; text-transform: uppercase; color: #66738a; margin: 0.8rem 0 0; line-height: 1.6; text-align: center; }
+
+/* Stamps */
+.stamp-wrap { overflow: hidden; padding: 10px 0; }
+.stamp { display: inline-block; padding: clamp(12px, 3vw, 20px) clamp(20px, 5vw, 32px); border: 3px double currentColor; border-radius: 10px; font-family: var(--mono); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-size: clamp(0.65rem, 2vw, 0.9rem); line-height: 1.6; text-align: center; margin-top: clamp(2rem, 5vw, 3rem); }
+.sect-v .stamp { color: var(--v1); }
+.sect-t .stamp { color: var(--t1); }
+.stamp.reveal { transform: rotate(-3deg) scale(1.2); opacity: 0; transition: transform 0.5s cubic-bezier(0.2, 1.4, 0.4, 1), opacity 0.4s; }
+.stamp.reveal.in { transform: rotate(-3deg) scale(1); opacity: 0.95; }
+.sect-t .stamp.reveal.in { transform: rotate(3deg) scale(1); }
+
+/* Back link */
+.back { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: clamp(2rem, 5vw, 3rem); font-family: var(--mono); font-size: clamp(0.6rem, 1.5vw, 0.7rem); letter-spacing: 0.15em; text-transform: uppercase; color: #7d8aa0; border: 1px solid rgba(255,255,255,0.15); border-radius: 99px; padding: 12px 20px; transition: 0.3s; min-height: 44px; }
+.back:hover { color: #fff; border-color: rgba(255,255,255,0.4); transform: translateY(-2px); }
+
+/* ============ FINALE ============ */
+.finale { position: relative; padding: clamp(80px, 15vw, 150px) 0; text-align: center; border-top: 1px solid var(--border-light); overflow: hidden; }
+.finale::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 60% at 50% 0%, rgba(79,230,180,0.1), transparent 65%), radial-gradient(70% 60% at 50% 100%, rgba(232,196,106,0.1), transparent 65%); }
+.finale h2 { font-family: var(--serif); font-size: clamp(2.2rem, 8vw, 5rem); line-height: 1.05; margin: 0.5rem 0 0; font-weight: 900; letter-spacing: -0.02em; }
+.finale h2 .a { background: linear-gradient(90deg, var(--v1), #8ef7d4); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.finale h2 .b { background: linear-gradient(90deg, #f3d68e, var(--t1)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.finale p { color: var(--text-muted); max-width: 46ch; margin: clamp(1rem, 3vw, 1.5rem) auto 0; line-height: 1.8; font-weight: 300; font-size: clamp(0.95rem, 2vw, 1.1rem); padding-inline: 16px; }
+.btn { margin-top: clamp(1.5rem, 4vw, 2.5rem); display: inline-flex; align-items: center; justify-content: center; padding: 16px 32px; border-radius: 99px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); font-family: var(--mono); font-size: clamp(0.65rem, 2vw, 0.8rem); letter-spacing: 0.15em; text-transform: uppercase; color: #fff; cursor: pointer; transition: 0.3s; min-height: 48px; }
+.btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); box-shadow: 0 15px 40px -15px rgba(255,255,255,0.3); }
+.signoff { font-family: var(--mono); font-size: clamp(0.5rem, 1.5vw, 0.65rem); letter-spacing: 0.2em; text-transform: uppercase; color: #4d586b; margin-top: clamp(2.5rem, 6vw, 4rem); }
+
+/* ============ FX & UTILS ============ */
+#fx { position: fixed; inset: 0; pointer-events: none; z-index: 9000; display: none; }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.3, 1); }
+.reveal.in { opacity: 1; transform: none; }
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .bar i { width: var(--w); }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= BOOT ================= -->
+<div id="boot" title="tap to skip">
+  <div class="boot-inner">
+    <div class="boot-line">initializing birthday protocol…</div>
+    <div class="boot-line">loading vhickthor.exe <span class="ok">[ OK ]</span></div>
+    <div class="boot-line">loading treasure.exe <span class="ok">[ OK ]</span></div>
+    <div class="boot-line">checking for cake <span class="warn">[ NOT FOUND — BUYING ]</span></div>
+    <div class="boot-bar"><i></i></div>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="kicker">Two birthdays · one day · one website</p>
+    <h1 class="hero-title">Happy Birthday,<br><em>you two.</em></h1>
+    <p class="hero-sub">Same blood, same day, completely different case files. Delivered right on time.</p>
+
+    <div class="doors">
+      <!-- Vhickthor Door -->
+      <a class="door door-v" href="#vhickthor">
+        <div class="door-pic" style="background-image: url('https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_400/v1793052442/photo_5981054904342089466_y.jpg');"></div>
+        <span class="door-ico">🩺</span>
+        <h2 class="door-name">Vhickthor</h2>
+        <p class="door-meta">Medical Student<br>First Born</p>
+        <span class="door-cta">Open File →</span>
+      </a>
+
+      <!-- Treasure Door -->
+      <a class="door door-t" href="#treasure">
+        <div class="door-pic" style="background-image: url('https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_400/v1793052441/photo_5981054904342089469_y.jpg');"></div>
+        <span class="door-ico">⚖️</span>
+        <h2 class="door-name">Treasure</h2>
+        <p class="door-meta">Law Student<br>My Lawyer</p>
+        <span class="door-cta">Open File →</span>
+      </a>
+    </div>
+
+    <p class="hero-hint">pick a sibling ↓</p>
+  </div>
+</header>
+
+<!-- ================= VHICKTHOR ================= -->
+<section id="vhickthor" class="sect sect-v">
+  <div class="wrap">
+
+    <div class="sect-top reveal">
+      <span class="tag">🏥 Dept. of Sibling Affairs</span>
+      <span class="tag">Patient File · V-001</span>
+      <span class="tag">Status: Stable &amp; Leading</span>
+    </div>
+
+    <h2 class="sect-name reveal">Vhickthor</h2>
+    <p class="sect-role reveal">Medical Student · First Born · Chief Prayer Officer</p>
+
+    <svg class="ecg" viewBox="0 0 800 60" preserveAspectRatio="none" aria-hidden="true">
+      <polyline points="0,30 120,30 140,30 150,6 160,54 170,30 300,30 320,30 330,6 340,54 350,30 480,30 500,30 510,6 520,54 530,30 660,30 680,30 690,6 700,54 710,30 800,30"/>
+    </svg>
+
+    <div class="cards">
+      <article class="card reveal">
+        <h3 class="card-h">Chief Complaint</h3>
+        <p class="lead">Thank you for being my brother. Thank you for <span class="hl">taking the lead</span> — even when it cost you something. Thank you for fighting with me, and for fighting <strong>for</strong> me.</p>
+        <p class="lead">Thank you for loving and supporting me and our other siblings. Thank you for loving God, and for making sure the rest of us do the same. Thank you for always praying.</p>
+        <p class="lead">You are a true leader. I am so glad you are my brother. I covet your <span class="hl">humility</span>, your <span class="hl">tolerance</span>, and your <span class="hl">passion for the things of God</span>.</p>
+        <p class="lead">I love you big time, bro. I won't say this again till next year — so hold this one tight. 🫂</p>
+      </article>
+
+      <article class="card reveal">
+        <h3 class="card-h">Vitals — On Record</h3>
+        <div class="vital">
+          <div class="vital-top"><span>Humility</span><b>100%</b></div>
+          <div class="bar"><i style="--w:100%"></i></div>
+        </div>
+        <div class="vital">
+          <div class="vital-top"><span>Tolerance</span><b>100%</b></div>
+          <div class="bar"><i style="--w:100%"></i></div>
+        </div>
+        <div class="vital">
+          <div class="vital-top"><span>Passion for God</span><b>∞</b></div>
+          <div class="bar"><i style="--w:100%"></i></div>
+        </div>
+        <div class="vital">
+          <div class="vital-top"><span>Leadership</span><b>A+</b></div>
+          <div class="bar"><i style="--w:96%"></i></div>
+        </div>
+        <div class="vital">
+          <div class="vital-top"><span>Prayer Frequency</span><b>Constant</b></div>
+          <div class="bar"><i style="--w:100%"></i></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="cards" style="grid-template-columns: 1fr;">
+      <article class="card rx reveal">
+        <p class="rx-mark">℞</p>
+        <h3 class="card-h">Initial Prescription</h3>
+        <ul class="rx-list">
+          <li>Take <strong>one (1) brother</strong> daily. Do not skip a dose.</li>
+          <li>Repeat the words “thank you” until the bottle is empty — it never empties.</li>
+          <li>Store in a warm place, surrounded by family. Keep away from discouragement.</li>
+          <li><strong>Refills:</strong> unlimited. <strong>Expiry:</strong> none.</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="cards" style="grid-template-columns: 1fr;">
+      <article class="card reveal">
+        <h3 class="card-h">Attending Physician's Notes</h3>
+        <p class="lead">I need the record to reflect something. Vhickthor doesn't just study medicine — he <span class="hl">practices it</span> on us every day. He is the steady hand when things get chaotic. He is the first to pray and the last to complain. He carries the weight of being the first born with a grace that I honestly don't know how he does it.</p>
+        <p class="lead">He fights with me, but he fights harder for me. He corrects me, but he covers me. He is a leader in the truest sense of the word — not just because he's the oldest, but because he genuinely cares about the well-being of everyone around him. I am so proud to call him my brother.</p>
+      </article>
+    </div>
+
+    <div class="cards" style="grid-template-columns: 1fr;">
+      <article class="card reveal">
+        <h3 class="card-h">Proposed Plan of Care</h3>
+        <p class="lead"><strong>Based on the above findings, the family proposes the following treatment plan:</strong></p>
+        <ul class="rx-list">
+          <li><strong>Administer daily doses of respect.</strong> He has earned it a thousand times over.</li>
+          <li><strong>Monitor for signs of burnout.</strong> Prescribe rest, laughter, and mandatory banter.</li>
+          <li><strong>Continue spiritual support.</strong> Keep praying with him and for him, just as he does for us.</li>
+          <li><strong>Maintain open communication.</strong> Keep fighting (the good kind), keep making up, keep showing up.</li>
+        </ul>
+        <p class="lead" style="margin-top:1rem;"><strong>Goal:</strong> To ensure Vhickthor knows he is loved, supported, and never carrying the weight alone.</p>
+      </article>
+    </div>
+
+    <div class="cards" style="grid-template-columns: 1fr;">
+      <article class="card reveal">
+        <h3 class="card-h">Discharge Summary</h3>
+        <p class="lead">May this year bring you every good thing you deserve. May your studies yield great results, may your leadership continue to inspire, and may God continue to hold you, guide you, and surprise you with joy.</p>
+        <p class="lead">May you always know that you are loved — not just by me, but by a family that is endlessly proud of you. Happy Birthday, Vhickthor. You are, and will always be, my true leader. 🫂</p>
+      </article>
+    </div>
+
+    <h3 class="strip reveal">Imaging &amp; Scans — Patient Archive</h3>
+    <div class="gal reveal">
+      <figure class="ph" data-label="📷 vhickthor-1.jpg">
+        <img src="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_900/v1793052442/photo_5981054904342089466_y.jpg" alt="Vhickthor" loading="lazy" onerror="this.style.display='none';this.closest('figure').classList.add('empty')">
+        <figcaption>Scan 01</figcaption>
+      </figure>
+      <figure class="ph" data-label="📷 vhickthor-2.jpg">
+        <img src="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_700/v1793052440/photo_5981054904342089475_y.jpg" alt="Vhickthor" loading="lazy" onerror="this.style.display='none';this.closest('figure').classList.add('empty')">
+        <figcaption>Scan 02</figcaption>
+      </figure>
+      <figure class="ph" data-label="📷 vhickthor-3.jpg">
+        <img src="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_700/v1793052440/photo_5981054904342089467_x.jpg" alt="Vhickthor" loading="lazy" onerror="this.style.display='none';this.closest('figure').classList.add('empty')">
+        <figcaption>Scan 03</figcaption>
+      </figure>
+      <figure class="ph" data-label="📷 vhickthor-4.jpg">
+        <img src="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_700/v1793052440/photo_5981054904342089473_y.jpg" alt="Vhickthor" loading="lazy" onerror="this.style.display='none';this.closest('figure').classList.add('empty')">
+        <figcaption>Scan 04</figcaption>
+      </figure>
+      <figure class="ph" data-label="📷 vhickthor-5.jpg">
+        <img src="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_700/v1793052438/photo_5981054904342089477_y.jpg" alt="Vhickthor" loading="lazy" onerror="this.style.display='none';this.closest('figure').classList.add('empty')">
+        <figcaption>Scan 05</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="strip reveal">Footage — Two Takes</h3>
+    <div class="vid-grid reveal">
+      <div class="vid-card">
+        <div class="video-wrap">
+          <span class="video-badge">Take 01 · Solo</span>
+          <video controls playsinline preload="metadata" poster="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_600/v1793052442/photo_5981054904342089466_y.jpg">
+            <source src="https://res.cloudinary.com/izxlyyn5/video/upload/v1793052454/IMG_1315.mp4" type="video/mp4">
+            Your browser can't play this video. <a href="https://res.cloudinary.com/izxlyyn5/video/upload/v1793052454/IMG_1315.mp4" target="_blank" style="text-decoration: underline; color: var(--v1);">Click here to open directly.</a>
+          </video>
+        </div>
+        <p class="video-note">▶ Consultation footage · unedited, unfiltered</p>
+      </div>
+
+      <div class="vid-card">
+        <div class="video-wrap">
+          <span class="video-badge">Take 02 · Me + Him</span>
+          <video controls playsinline preload="metadata" poster="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_600/v1793052440/photo_5981054904342089475_y.jpg">
+            <source src="https://res.cloudinary.com/izxlyyn5/video/upload/v1793053567/IMG_1317.mp4" type="video/mp4">
+            Your browser can't play this video. <a href="https://res.cloudinary.com/izxlyyn5/video/upload/v1793053567/IMG_1317.mp4" target="_blank" style="text-decoration: underline; color: var(--v1);">Click here to open directly.</a>
+          </video>
+        </div>
+        <p class="video-note">▶ Co-signature · the two of us, on record</p>
+      </div>
+    </div>
+
+    <div class="stamp-wrap">
+      <div class="stamp reveal">
+        Diagnosis: Chronic Greatness<br>
+        Prognosis: Incurable<br>
+        Discharge: Denied
+      </div>
+    </div>
+
+    <a class="back" href="#top">↑ back to the doors</a>
+  </div>
+</section>
+
+<!-- ================= TREASURE ================= -->
+<section id="treasure" class="sect sect-t">
+  <div class="wrap">
+
+    <div class="sect-top reveal">
+      <span class="tag">⚖️ Court of Sibling Affairs</span>
+      <span class="tag">Case No. TRS/001</span>
+      <span class="tag">Status: Charged</span>
+    </div>
+
+    <h2 class="sect-name reveal">Treasure</h2>
+    <p class="sect-role reveal">Law Student · Gist Supplier · My Lawyer</p>
+
+    <div class="cards">
+      <article class="card reveal">
+        <h3 class="card-h">Sworn Statement</h3>
+        <p class="lead">Treasure. How are you? <span class="hl">You don chop? If no — send aza.</span> 😌</p>
+        <p class="lead">I bless the day you were born, because you are, quite literally, a <strong>treasure</strong>.</p>
+        <p class="lead">Thank you for never starving me of gist. Thank you for always understanding, <span class="hl">even when nobody else does</span>. Thank you for loving God, thank you for always praying — and I love how <span class="hl">diligent</span> you are.</p>
+        <p class="lead">I love and cherish you big, my lawyer. Cheers to memories and banter. 🥂</p>
+      </article>
+
+      <article class="card reveal">
+        <h3 class="card-h">Charge Sheet</h3>
+        <ul class="charges">
+          <li><span class="no">COUNT I</span><span class="desc">Supplying gist without a licence</span><span class="verdict">GUILTY</span></li>
+          <li><span class="no">COUNT II</span><span class="desc">Understanding me when nobody else could</span><span class="verdict">GUILTY</span></li>
+          <li><span class="no">COUNT III</span><span class="desc">Excessive, unrepentant diligence</span><span class="verdict">GUILTY</span></li>
+          <li><span class="no">COUNT IV</span><span class="desc">Loving God — loudly, daily, publicly</span><span class="verdict">GUILTY</span></li>
+          <li><span class="no">COUNT V</span><span class="desc">Being the best lawyer a sibling could ask for</span><span class="verdict">GUILTY</span></li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="cards" style="grid-template-columns: 1fr;">
+      <article class="card reveal">
+        <h3 class="card-h">Lead Counsel's Statement</h3>
+        <p class="lead">I need the court to understand something. Treasure doesn't just study law — she <span class="hl">lives it</span>. She argues for the people she loves with the kind of precision that would make a judge pause. She's the one who reads the fine print on life, who spots the loophole in a bad day, and who fights for a fair outcome even when she's exhausted.</p>
+        <p class="lead">She is diligent in a way that makes me want to be better. She is prayerful in a way that makes me feel safe. And she is funny in a way that makes even the most boring days feel like a courtroom drama I actually want to watch. I am so proud to call her my sister.</p>
+      </article>
+    </div>
+
+    <div class="cards" style="grid-template-columns: 1fr;">
+      <article class="card reveal">
+        <h3 class="card-h">Motion to Cherish</h3>
+        <p class="lead"><strong>Now comes the undersigned, your sibling, respectfully moving this Honourable Court for the following reliefs:</strong></p>
+        <ul class="rx-list">
+          <li><strong>The right to always be your brother.</strong> No term limits, no adjournments, no appeals.</li>
+          <li><strong>The right to keep the banter alive.</strong> Even when you're a big, serious lawyer.</li>
+          <li><strong>The right to always be your biggest supporter.</strong> Whether you're winning cases or just winning at life.</li>
+          <li><strong>The right to send you "you don chop?" messages.</strong> And the right to expect "send aza" in return.</li>
+        </ul>
+        <p class="lead" style="margin-top:1rem;"><strong>Wherefore, the undersigned prays that this Court grants these reliefs and continues to bless the day you were born.</strong></p>
+      </article>
+    </div>
+
+    <div class="cards" style="grid-template-columns: 1fr;">
+      <article class="card reveal">
+        <h3 class="card-h">Prayer for Relief</h3>
+        <p class="lead">May this year bring you every good thing you deserve. May your diligence pay off in ways that make you gasp. May God continue to hold you, guide you, and surprise you with joy. May you always know that you are loved — not just by me, but by a family that is endlessly proud of you.</p>
+        <p class="lead">Happy Birthday, Treasure. You are, and will always be, my favourite lawyer. 🥂</p>
+      </article>
+    </div>
+
+    <h3 class="strip reveal">Exhibits A–E — Tendered in Evidence</h3>
+    <div class="gal reveal">
+      <figure class="ph" data-label="📷 treasure-1.jpg">
+        <img src="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_900/v1793052441/photo_5981054904342089469_y.jpg" alt="Treasure" loading="lazy" onerror="this.style.display='none';this.closest('figure').classList.add('empty')">
+        <figcaption>Exhibit A</figcaption>
+      </figure>
+      <figure class="ph" data-label="📷 treasure-2.jpg">
+        <img src="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_700/v1793052442/photo_5981054904342089468_y.jpg" alt="Treasure" loading="lazy" onerror="this.style.display='none';this.closest('figure').classList.add('empty')">
+        <figcaption>Exhibit B</figcaption>
+      </figure>
+      <figure class="ph" data-label="📷 treasure-3.jpg">
+        <img src="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_700/v1793052438/photo_5981054904342089480_y.jpg" alt="Treasure" loading="lazy" onerror="this.style.display='none';this.closest('figure').classList.add('empty')">
+        <figcaption>Exhibit C</figcaption>
+      </figure>
+      <figure class="ph" data-label="📷 treasure-4.jpg">
+        <img src="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_700/v1793052438/photo_5981054904342089465_y.jpg" alt="Treasure" loading="lazy" onerror="this.style.display='none';this.closest('figure').classList.add('empty')">
+        <figcaption>Exhibit D</figcaption>
+      </figure>
+      <figure class="ph" data-label="📷 treasure-5.jpg">
+        <img src="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_700/v1793052437/photo_5981054904342089464_y.jpg" alt="Treasure" loading="lazy" onerror="this.style.display='none';this.closest('figure').classList.add('empty')">
+        <figcaption>Exhibit E</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="strip reveal">Courtroom Footage — Exhibits F &amp; G</h3>
+    <div class="vid-grid reveal">
+      <div class="vid-card">
+        <div class="video-wrap">
+          <span class="video-badge">Exhibit F · Her Honour</span>
+          <video controls playsinline preload="metadata" poster="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_600/v1793052441/photo_5981054904342089469_y.jpg">
+            <source src="https://res.cloudinary.com/izxlyyn5/video/upload/v1793052457/IMG_1313.mp4" type="video/mp4">
+            Your browser can't play this video. <a href="https://res.cloudinary.com/izxlyyn5/video/upload/v1793052457/IMG_1313.mp4" target="_blank" style="text-decoration: underline; color: var(--t1);">Click here to open directly.</a>
+          </video>
+        </div>
+        <p class="video-note">▶ In session · admitted without objection</p>
+      </div>
+
+      <div class="vid-card">
+        <div class="video-wrap">
+          <span class="video-badge">Exhibit G · Co-Counsel</span>
+          <video controls playsinline preload="metadata" poster="https://res.cloudinary.com/izxlyyn5/image/upload/f_auto,q_auto,w_600/v1793052442/photo_5981054904342089468_y.jpg">
+            <source src="https://res.cloudinary.com/izxlyyn5/video/upload/v1793052684/IMG_1314.mp4" type="video/mp4">
+            Your browser can't play this video. <a href="https://res.cloudinary.com/izxlyyn5/video/upload/v1793052684/IMG_1314.mp4" target="_blank" style="text-decoration: underline; color: var(--t1);">Click here to open directly.</a>
+          </video>
+        </div>
+        <p class="video-note">▶ Off the record · me + my lawyer</p>
+      </div>
+    </div>
+
+    <div class="stamp-wrap">
+      <div class="stamp reveal">
+        Verdict: Guilty of Being a Treasure<br>
+        Sentence: Cherished for Life<br>
+        Case adjourned to next year
+      </div>
+    </div>
+
+    <a class="back" href="#top">↑ back to the doors</a>
+  </div>
+</section>
+
+<!-- ================= FINALE ================= -->
+<section class="finale" id="finale">
+  <div class="wrap">
+    <p class="kicker reveal">Case closed · Patient discharged (not really)</p>
+    <h2 class="reveal"><span class="a">Vhickthor</span> &amp; <span class="b">Treasure</span><br>Happy Birthday.</h2>
+    <p class="reveal">One is out here saving lives, the other is out here saving me from bad decisions. I got lucky twice on the same day — and I'm not taking it for granted.</p>
+    <button class="btn reveal" onclick="confetti()">🎉 Release the confetti</button>
+    <p class="signoff reveal">Made with love, banter and zero design budget · your sibling</p>
+  </div>
+</section>
+
+<canvas id="fx"></canvas>
+
+<script>
+/* ---------- boot ---------- */
+(function(){
+  var boot = document.getElementById('boot');
+  boot.addEventListener('click', function(){ boot.classList.add('out'); setTimeout(function(){boot.remove();}, 600); });
+  setTimeout(function(){
+    if(!boot.parentNode) return;
+    boot.classList.add('out');
+    setTimeout(function(){ if(boot.parentNode) boot.remove(); }, 600);
+  }, 3200);
+})();
+
+/* ---------- reveal on scroll ---------- */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, {threshold:0.15, rootMargin:'0px 0px -60px 0px'});
+  els.forEach(function(e){ io.observe(e); });
+})();
+
+/* ---------- confetti ---------- */
+function confetti(duration){
+  duration = duration || 3200;
+  var c = document.getElementById('fx');
+  var ctx = c.getContext('2d');
+  c.width = window.innerWidth; c.height = window.innerHeight;
+  c.style.display = 'block';
+
+  var colors = ['#4fe6b4','#e8c46a','#ff6b8b','#7aa2ff','#ffffff','#f3d68e'];
+  var parts = [];
+  for(var i=0;i<160;i++){
+    parts.push({
+      x: Math.random()*c.width,
+      y: -20 - Math.random()*c.height*0.5,
+      vx: (Math.random()-0.5)*2.2,
+      vy: 2 + Math.random()*3.8,
+      w: 5 + Math.random()*7,
+      h: 8 + Math.random()*10,
+      rot: Math.random()*Math.PI,
+      vr: (Math.random()-0.5)*0.22,
+      col: colors[(Math.random()*colors.length)|0]
+    });
+  }
+  var start = performance.now();
+  function loop(t){
+    var elapsed = t - start;
+    ctx.clearRect(0,0,c.width,c.height);
+    for(var i=0;i<parts.length;i++){
+      var p = parts[i];
+      p.x += p.vx; p.y += p.vy; p.vy += 0.035; p.rot += p.vr;
+      if(p.y > c.height + 40){ p.y = -20; p.x = Math.random()*c.width; p.vy = 2 + Math.random()*3; }
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.globalAlpha = elapsed > duration-700 ? Math.max(0, (duration-elapsed)/700) : 1;
+      ctx.fillStyle = p.col;
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+    }
+    if(elapsed < duration){ requestAnimationFrame(loop); }
+    else { ctx.clearRect(0,0,c.width,c.height); c.style.display='none'; }
+  }
+  requestAnimationFrame(loop);
+}
+
+/* ---------- auto-confetti when the finale appears ---------- */
+(function(){
+  var f = document.getElementById('finale');
+  if(!('IntersectionObserver' in window)) return;
+  var fired = false;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting && !fired){ fired = true; confetti(3600); io.disconnect(); }
+    });
+  }, {threshold:0.4});
+  io.observe(f);
+})();
+</script>
+</body>
+</html>
